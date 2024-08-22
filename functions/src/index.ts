@@ -1,9 +1,14 @@
 import * as functions from "firebase-functions";
 import {SecretManagerServiceClient} from "@google-cloud/secret-manager";
 
+// If the incoming company name is, e.g. YOUR_COMPANY, then you would
+// need to have a secret named YOUR_COMPANY_CAREGLP_API_KEY set in
+// Google Secret Manager
 
+// This needs to be set to your Google Cloud project name.
+// Please set the same value in .firebaserc at the top level.
+const project = "your-project-name";
 const secretClient = new SecretManagerServiceClient();
-const project = "care-gpt";
 
 
 async function getSecret(name: string): Promise<string> {
@@ -19,6 +24,7 @@ async function getSecret(name: string): Promise<string> {
 
 export const initiatePayment = functions.https.onRequest(async (request, response) => {
   try {
+    // can add specific domains instead for security
     response.set("Access-Control-Allow-Origin", "*");
     response.set("Access-Control-Allow-Methods", "POST, OPTIONS");
     response.set("Access-Control-Allow-Headers", "Content-Type, Authorization");

@@ -1,13 +1,13 @@
 (function() {
-  const amount = 0.50;
-  const colorPrimary = 'rgb(107, 74, 35)';
-  const companyName = "SLIM_SOLUTIONS";
+  const amount = 0.50; // amount to be paid in USD, >= 0.50
+  const colorPrimary = 'rgb(107, 74, 35)'; // customizable
+  const companyName = "YOUR_COMPANY"; // company name for cloud function
 
   let clientSecret = '';
   onDOMReady(async () => clientSecret = await initiatePayment());
   window.cvStripeLoaded = false;
 
-  function loadStripeIfNeeded() { // do not call this immediately
+  function loadStripeIfNeeded() {
     try {
       const src = 'https://js.stripe.com/v3/';
       let script = document.querySelector(`script[src^='${src}']`);
