@@ -1,0 +1,1 @@
+The index.js file shows a script that can be adapted for any framework, but was originally written for Wordpress Elementor Forms. It looks for a question with a special identity and then overlays the Stripe payment fields onto the form.
